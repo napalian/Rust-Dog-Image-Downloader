@@ -9,6 +9,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?
         .json::<serde_json::Value>()
         .await?;
+    
     let dog_image = response["message"].as_str().ok_or("No image URL found")?;
 
     let dog_bytes_response = reqwest::get(dog_image).await?;
